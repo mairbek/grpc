@@ -386,6 +386,7 @@ defmodule GRPC.Stub do
   end
 
   def recv(%{__interface__: interface} = stream, opts) do
+    IO.puts("fefe recv")
     opts =
       if is_list(opts) do
         parse_recv_opts(opts)
@@ -398,6 +399,7 @@ defmodule GRPC.Stub do
 
   @doc false
   def do_recv(%{server_stream: true, channel: channel, payload: payload} = stream, opts) do
+    IO.puts("fefe do_recv 1")
     case recv_headers(channel.adapter, channel.adapter_payload, payload, opts) do
       {:ok, headers, is_fin} ->
         res_enum =
@@ -421,6 +423,8 @@ defmodule GRPC.Stub do
         %{payload: payload, channel: channel} = stream,
         opts
       ) do
+
+    IO.puts("fefe do_recv 2")
     with {:ok, headers, _is_fin} <-
            recv_headers(channel.adapter, channel.adapter_payload, payload, opts),
          {:ok, body, trailers} <-

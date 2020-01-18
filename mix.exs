@@ -49,7 +49,9 @@ defmodule GRPC.Mixfile do
       # {:cowlib, "~> 2.8.0", hex: :grpc_cowlib, override: true},
       {:ex_doc, ex_doc_version, only: :dev},
       {:inch_ex, "~> 2.0", only: [:dev, :test]},
-      {:dialyxir, "~> 1.0.0-rc.7", only: :dev, runtime: false}
+      {:dialyxir, "~> 1.0.0-rc.7", only: :dev, runtime: false},
+      {:castore, "~> 0.1.0"},
+      {:mint, github: "elixir-mint/mint", ref: "77cbe176cc772eb8f639e5bd7cc18b177360c841"}
     ]
   end
 
