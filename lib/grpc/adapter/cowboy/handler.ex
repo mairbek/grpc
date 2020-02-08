@@ -172,7 +172,10 @@ defmodule GRPC.Adapter.Cowboy.Handler do
 
   def info({:read_body, ref, pid}, req, state) do
     opts = timeout_left_opt(state[:handling_timer])
+    Logger.warn("sending request #{inspect({req, opts})}")
     {s, body, req} = :cowboy_req.read_body(req, opts)
+    Logger.warn("done requests")
+
     send(pid, {ref, {s, body}})
     {:ok, req, state}
   catch
